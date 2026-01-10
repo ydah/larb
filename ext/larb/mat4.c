@@ -315,17 +315,28 @@ VALUE mat4_mul(VALUE self, VALUE other) {
   if (rb_obj_is_kind_of(other, cMat4)) {
     Mat4Data *b = mat4_get(other);
     double result[16];
-    for (int i = 0; i < 16; i++) {
-      result[i] = 0.0;
-    }
-    for (int col = 0; col < 4; col++) {
-      for (int row = 0; row < 4; row++) {
-        for (int k = 0; k < 4; k++) {
-          result[col * 4 + row] +=
-              a->data[k * 4 + row] * b->data[col * 4 + k];
-        }
-      }
-    }
+    const double *ad = a->data;
+    const double *bd = b->data;
+
+    result[0] = ad[0] * bd[0] + ad[4] * bd[1] + ad[8] * bd[2] + ad[12] * bd[3];
+    result[1] = ad[1] * bd[0] + ad[5] * bd[1] + ad[9] * bd[2] + ad[13] * bd[3];
+    result[2] = ad[2] * bd[0] + ad[6] * bd[1] + ad[10] * bd[2] + ad[14] * bd[3];
+    result[3] = ad[3] * bd[0] + ad[7] * bd[1] + ad[11] * bd[2] + ad[15] * bd[3];
+
+    result[4] = ad[0] * bd[4] + ad[4] * bd[5] + ad[8] * bd[6] + ad[12] * bd[7];
+    result[5] = ad[1] * bd[4] + ad[5] * bd[5] + ad[9] * bd[6] + ad[13] * bd[7];
+    result[6] = ad[2] * bd[4] + ad[6] * bd[5] + ad[10] * bd[6] + ad[14] * bd[7];
+    result[7] = ad[3] * bd[4] + ad[7] * bd[5] + ad[11] * bd[6] + ad[15] * bd[7];
+
+    result[8] = ad[0] * bd[8] + ad[4] * bd[9] + ad[8] * bd[10] + ad[12] * bd[11];
+    result[9] = ad[1] * bd[8] + ad[5] * bd[9] + ad[9] * bd[10] + ad[13] * bd[11];
+    result[10] = ad[2] * bd[8] + ad[6] * bd[9] + ad[10] * bd[10] + ad[14] * bd[11];
+    result[11] = ad[3] * bd[8] + ad[7] * bd[9] + ad[11] * bd[10] + ad[15] * bd[11];
+
+    result[12] = ad[0] * bd[12] + ad[4] * bd[13] + ad[8] * bd[14] + ad[12] * bd[15];
+    result[13] = ad[1] * bd[12] + ad[5] * bd[13] + ad[9] * bd[14] + ad[13] * bd[15];
+    result[14] = ad[2] * bd[12] + ad[6] * bd[13] + ad[10] * bd[14] + ad[14] * bd[15];
+    result[15] = ad[3] * bd[12] + ad[7] * bd[13] + ad[11] * bd[14] + ad[15] * bd[15];
     return mat4_build(rb_obj_class(self), result);
   }
 
