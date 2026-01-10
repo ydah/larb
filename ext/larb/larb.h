@@ -3,4 +3,6 @@
 
 #include <ruby.h>
 
+extern VALUE mLarb;
+
 #endif
