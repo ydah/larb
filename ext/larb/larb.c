@@ -3,6 +3,7 @@
 #include "vec3.h"
 #include "vec4.h"
 #include "mat2.h"
+#include "mat3.h"
 
 VALUE mLarb = Qnil;
 
@@ -12,4 +13,5 @@ void Init_larb(void) {
   Init_vec3(mLarb);
   Init_vec4(mLarb);
   Init_mat2(mLarb);
+  Init_mat3(mLarb);
 }
