@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
+require_relative "lib/larb/version"
+
 Gem::Specification.new do |spec|
   spec.name = "larb"
-  spec.version = "0.1.0"
+  spec.version = Larb::VERSION
   spec.authors = ["Yudai Takada"]
   spec.email = ["t.yudai92@gmail.com"]
 
