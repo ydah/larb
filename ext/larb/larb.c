@@ -7,6 +7,7 @@
 #include "mat4.h"
 #include "quat.h"
 #include "mat2d.h"
+#include "color.h"
 
 VALUE mLarb = Qnil;
 
@@ -20,4 +21,5 @@ void Init_larb(void) {
   Init_quat(mLarb);
   Init_mat4(mLarb);
   Init_mat2d(mLarb);
+  Init_color(mLarb);
 }
