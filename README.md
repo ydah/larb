@@ -58,6 +58,19 @@ custom = Larb::Color.new(0.5, 0.3, 0.8, 1.0)
 hex_color = Larb::Color.from_hex("#ff8800")
 ```
 
+## Development
+
+```bash
+# Install dependencies
+bundle install
+
+# Compile native extension
+bundle exec rake compile
+
+# Run tests
+bundle exec rake test
+```
+
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
