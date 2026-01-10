@@ -4,6 +4,8 @@
 #include "vec4.h"
 #include "mat2.h"
 #include "mat3.h"
+#include "mat4.h"
+#include "quat.h"
 
 VALUE mLarb = Qnil;
 
@@ -14,4 +16,6 @@ void Init_larb(void) {
   Init_vec4(mLarb);
   Init_mat2(mLarb);
   Init_mat3(mLarb);
+  Init_quat(mLarb);
+  Init_mat4(mLarb);
 }
