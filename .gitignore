@@ -14,3 +14,11 @@
 .byebug_history
 .rspec_status
 Gemfile.lock
+
+*.o
+*.so
+*.bundle
+*.dll
+*.dSYM/
+Makefile
+mkmf.log

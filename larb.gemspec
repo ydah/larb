@@ -15,12 +15,12 @@ Gem::Specification.new do |spec|
   spec.metadata["source_code_uri"] = spec.homepage
   spec.metadata["changelog_uri"] = "#{spec.homepage}/blob/main/CHANGELOG.md"
 
-  gemspec = File.basename(__FILE__)
-  spec.files = IO.popen(%w[git ls-files -z], chdir: __dir__, err: IO::NULL) do |ls|
-    ls.readlines("\x0", chomp: true).reject do |f|
-      (f == gemspec) ||
-        f.start_with?(*%w[bin/ test/ spec/ features/ .git .github appveyor Gemfile examples/])
-    end
-  end
+  spec.extensions = ["ext/larb/extconf.rb"]
+  spec.files = Dir["lib/**/*.rb"] +
+               Dir["ext/**/*.{c,h,rb}"] +
+               Dir["test/**/*.rb"] +
+               %w[README.md LICENSE CHANGELOG.md]
   spec.require_paths = ["lib"]
+
+  spec.add_development_dependency "rake-compiler", "~> 1.2"
 end
